@@ -163,7 +163,7 @@ if file:
         Journalist_Table.drop_duplicates(subset=['Journalist'], keep='first', inplace=True)
         valid_columns = Journalist_Table.select_dtypes(include='number').columns
         Journalist_Table['Total'] = Journalist_Table[valid_columns].sum(axis=1)
-        Journalist_Table = Journalist_Table.sort_values('Total', ascending=False).round()
+        Jour_table = Journalist_Table.sort_values('Total', ascending=False).round()
         bn_row = Jour_table.loc[Jour_table['Journalist'] == 'Bureau News']
         Jour_table = Jour_table[Jour_table['Journalist'] != 'Bureau News']
         Jour_table = pd.concat([Jour_table, bn_row], ignore_index=True)
