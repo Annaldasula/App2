@@ -163,8 +163,7 @@ if file:
         Journalist_Table.drop_duplicates(subset=['Journalist'], keep='first', inplace=True)
         valid_columns = Journalist_Table.select_dtypes(include='number').columns
         Journalist_Table['Total'] = Journalist_Table[valid_columns].sum(axis=1)
-        # Journalist_Table = Journalist_Table.sort_values('Total', ascending=False).round()
-        Jour_table=Journalist_Table.sort_values('Total',ascending=False).round()
+        Journalist_Table = Journalist_Table.sort_values('Total', ascending=False).round()
         bn_row = Jour_table.loc[Jour_table['Journalist'] == 'Bureau News']
         Jour_table = Jour_table[Jour_table['Journalist'] != 'Bureau News']
         Jour_table = pd.concat([Jour_table, bn_row], ignore_index=True)
@@ -231,7 +230,7 @@ if file:
         finaldata['Topic'] = finaldata['Headline'].apply(classify_topic)
 
         dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table]
-        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table', 'Pub Type and Pub Name Table', 'PubType Entity Table']
+        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table','PubType Entity Table', 'Pub Type and Pub Name Table']
 
         # Sidebar for download options
         st.sidebar.write("## Download Options")
@@ -274,15 +273,15 @@ if file:
         st.sidebar.write("## Download Selected DataFrame")
         
         dataframes_to_download = {
-            "Entity_SOV1": Entity_SOV1,
+            "Entity_SOV1": Entity_SOV3,
             "Data": data,
             "Finaldata": finaldata,
-            "Month-on-Month":sov_dt,
+            "Month-on-Month":sov_dt1,
             "Publication Table":pubs_table,
             "Journalist Table":Jour_table,
             "Publication Type and Name Table":PP_table,
             "Publication Type Table with Entity":PType_Entity,
-            "Publication type,Publication Name and Entity Table":ppe1,
+            # "Publication type,Publication Name and Entity Table":ppe1,
             "Entity-wise Sheets": finaldata  # Add this option to download entity-wise sheets
         }
         selected_dataframe = st.sidebar.selectbox("Select DataFrame:", list(dataframes_to_download.keys()))
@@ -306,10 +305,10 @@ if file:
         
         if st.sidebar.button("Download All DataFrames"):
             # List of DataFrames to save
-            dfs = [Entity_SOV1, sov_dt, pubs_table, Jour_table, PType_Entity, PP_table, ppe1]
+            dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table]
             comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table',
-                        'Pub Type and Entity Table', 'Pub Type and Pub Name Table',
-                        'PubType PubName and Entity Table']
+                        'Pub Type and Entity Table', 'Pub Type and Pub Name Table'
+                        ]
             
             excel_io_all = io.BytesIO()
             multiple_dfs(dfs, 'Tables', excel_io_all, 2, comments)
