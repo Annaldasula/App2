@@ -40,7 +40,7 @@ def create_entity_sheets(data, writer):
 
         # Set the column widths dynamically for columns 5 onwards
         for col_num, max_width in enumerate(max_col_widths):
-            worksheet.set_column(col_num + 5, col_num + 5, max_width + 2)  # Adding extra padding for readability       
+            worksheet.set_column(col_num + 7, col_num + 7, max_width + 2)  # Adding extra padding for readability       
 
             
 # Function to save multiple DataFrames in a single Excel sheet
