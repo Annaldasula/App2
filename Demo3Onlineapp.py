@@ -190,7 +190,7 @@ if file:
 
         # Define a dictionary of keywords for each entity
         entity_keywords = {
-            'Amazon': ['Amazon', 'Amazons', 'amazon'],
+            # 'Amazon': ['Amazon', 'Amazons', 'amazon'],
             # Add other entities and keywords here
         }
 
