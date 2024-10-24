@@ -31,11 +31,11 @@ def create_entity_sheets(data, writer):
         entity_df = data[data['Entity'] == Entity]
         entity_df.to_excel(writer, sheet_name=Entity, index=False)
         worksheet = writer.sheets[Entity]
-        worksheet.set_column(2, 5, 48, cell_format=wrap_format)
+        worksheet.set_column(2, 6, 48, cell_format=wrap_format)
         # Calculate column widths based on the maximum content length in each column except columns 1 to 4
         max_col_widths = [
             max(len(str(value)) for value in entity_df[column])
-            for column in entity_df.columns[6:]  # Exclude columns 1 to 4
+            for column in entity_df.columns[7:]  # Exclude columns 1 to 4
         ]
 
         # Set the column widths dynamically for columns 5 onwards
