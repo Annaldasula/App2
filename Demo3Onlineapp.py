@@ -35,7 +35,7 @@ def create_entity_sheets(data, writer):
         # Calculate column widths based on the maximum content length in each column except columns 1 to 4
         max_col_widths = [
             max(len(str(value)) for value in entity_df[column])
-            for column in entity_df.columns[5:]  # Exclude columns 1 to 4
+            for column in entity_df.columns[6:]  # Exclude columns 1 to 4
         ]
 
         # Set the column widths dynamically for columns 5 onwards
